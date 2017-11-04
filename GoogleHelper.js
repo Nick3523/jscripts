@@ -13,6 +13,7 @@
 
 var i = 1;
 var save = i;
+var oldone = null;
 //i Pointe vers le prochain élément à séléctionner si on descends, save pointe vers l'élément actuel
 
 function checkKey(e) {
@@ -22,7 +23,8 @@ function checkKey(e) {
     if (e.keyCode == '38') {
         // up arrow
 
-    document.querySelector("#rso > div > div > div:nth-child("+i+") > div > div > h3 > a").style.color = "green";
+    document.querySelector("#rso > div > div > div:nth-child("+i+") > div > div > h3 > a").style.color = "red";
+        oldone = document.querySelector("#rso > div > div > div:nth-child("+save+") > div > div > h3 > a").style.color = "blue";;
 
     if (i >= 2) { save=i; i--; }
 
@@ -31,6 +33,7 @@ function checkKey(e) {
     else if (e.keyCode == '40') {
         // down arrow
     document.querySelector("#rso > div > div > div:nth-child("+i+") > div > div > h3 > a").style.color = "red";
+    oldone = document.querySelector("#rso > div > div > div:nth-child("+save+") > div > div > h3 > a").style.color = "blue";;
     save=i;
     i++;
 
