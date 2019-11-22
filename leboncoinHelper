@@ -1,0 +1,32 @@
+// ==UserScript==
+// @name         LeboncoinHelper
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://www.leboncoin.fr/*
+// @grant        none
+// ==/UserScript==
+
+
+function CopyNumber() {
+
+  var str = document.querySelector("#container > main > div > div > div > section > section._35sFG > section._1_H-h > div._2-Dyg > div > div > div > div.YTu2J > div > div:nth-child(1) > div > div > div > span > a").href
+  var el = document.createElement('textarea');
+  el.value = str.substring(4); //Garde uniquement le numéro de téléphone
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+  alert("Numéro de téléphone copié dans le presse papier!");
+}
+
+//Création de bouton
+var footer = document.getElementsByClassName("_2-Dyg")[0]
+var btn = document.createElement("BUTTON");
+var t = document.createTextNode("Numéro de téléphone");
+btn.addEventListener('click', CopyNumber);
+btn.appendChild(t);
+footer.appendChild(btn);
+//Clique sur le bouton orange
+document.querySelector("#container > main > div > div > div > section > section._35sFG > section._1_H-h > div._2-Dyg > div > div > div > div.YTu2J > div > div:nth-child(1) > div > div > button").click()
