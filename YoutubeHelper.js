@@ -1,6 +1,11 @@
 // ==UserScript==
-// @name            YouTubeHelper
+// @name            YouTube Volume Mouse Controller
+// @namespace       wddd
+// @version         1.5.0
+// @author          wddd
+// @license         MIT
 // @description     Ajuster le son d'une vidéo Youtube avec la molette de la souris !
+// @homepage        https://github.com/wdwind/YouTubeVolumeMouseController
 // @match           *://www.youtube.com/*
 // ==/UserScript==
 
@@ -80,7 +85,7 @@ function appendSlideBar() {
 
         sliderBar = document.getElementById("sliderBar");
         addCss(sliderBar, {
-            "width": "100%",
+           "width": "100%",
             "height": "60px",
             "position": "relative",
             "z-index": "9999",
@@ -122,6 +127,22 @@ function getSliderBarTopProp() {
     return Math.max(fullScreenTitleHeight, overlap);
 }
 
+/**
+ * YouTube use Javascript to navigate between pages. So the script will not work:
+ * 1. If the script only includes/matches the sub pages (like the video page www.youtube.com/watch?v=...)
+ * 2. And the user navigates to the sub page from a page which is not included/matched by the script
+ *
+ * In the above scenario, the script will not be executed.
+ *
+ * To run the script in all cases,
+ * 1. Include/match the whole YouTube host
+ * 2. Detect Javascript events, and run the script appropriately
+ *
+ * Details:
+ * * https://stackoverflow.com/questions/32275387/recall-tampermonkey-script-when-page-location-changes/32277150#32277150
+ * * https://stackoverflow.com/questions/34077641/how-to-detect-page-navigation-on-youtube-and-modify-html-before-page-is-rendered
+ * * https://github.com/1c7/Youtube-Auto-Subtitle-Download/blob/master/Youtube-Subtitle-Downloader/Tampermonkey.js#L122-L152
+ */
 
 // trigger when navigating to new material design page
 window.addEventListener("yt-navigate-finish", function () {
