@@ -4,7 +4,7 @@
 // @version         1.5.0
 // @author          wddd
 // @license         MIT
-// @description     Ajuster le son d'une vidéo Youtube avec la molette de la souris !
+// @description     Control YouTube video volume by mouse wheel.
 // @homepage        https://github.com/wdwind/YouTubeVolumeMouseController
 // @match           *://www.youtube.com/*
 // ==/UserScript==
@@ -14,14 +14,23 @@ function getVideo() {
 }
 
 function getPlayer() {
-    var ytd_player = document.getElementsByTagName("ytd-player")[0];
-    if (ytd_player) {
-        return ytd_player.getPlayer();
+    var ytd_player = document.getElementsByTagName("ytd-player");
+    for (var player of ytd_player) {
+        if (player.getPlayer()) {
+            return player.getPlayer();
+        }
     }
 }
 
 function run() {
     var player = getPlayer();
+
+    if (!player) {
+        // eslint-disable-next-line no-console
+        console.log("Player not found (yet).");
+        return;
+    }
+
     var timer = 0;
 
     // detect available wheel event
