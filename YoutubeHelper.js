@@ -6,6 +6,7 @@
 // @license         MIT
 // @description     Control YouTube video volume by mouse wheel.
 // @homepage        https://github.com/wdwind/YouTubeVolumeMouseController
+// @downloadURL     https://github.com/wdwind/YouTubeVolumeMouseController/raw/master/YouTubeVolumeMouseController.user.js
 // @match           *://www.youtube.com/*
 // ==/UserScript==
 
@@ -94,15 +95,15 @@ function appendSlideBar() {
 
         sliderBar = document.getElementById("sliderBar");
         addCss(sliderBar, {
-           "width": "100%",
-            "height": "60px",
+            "width": "100%",
+            "height": "20px",
             "position": "relative",
             "z-index": "9999",
             "text-align": "left",
             "color": "red",
             "font-size": "50px",
             "opacity": "0.9",
-            "background-color": "rgba(0,0,0,0)",
+//            "background-color": "rgba(0,0,0,0.2)",
         });
     }
 
